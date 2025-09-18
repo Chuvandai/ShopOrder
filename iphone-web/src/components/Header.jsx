@@ -1,23 +1,44 @@
-const Header = ({title, menu, button }) => {
+import { NavLink } from "react-router-dom";
+const Header = ({title }) => {
+  const menuLinks = [
+    { name: "Trang chủ", path: "/" },
+    { name: "Cửa hàng", path: "/shop" },
+    { name: "Thực đơn", path: "/menu" },
+    { name: "Tin tức", path: "/news" },
+  ];
   return (
-    <header className="flex justify-between items-center p-4 bg-white shadow-md">
-      <nav className="flex items-center gap-6">
-        <h1 className="text-xl font-bold">{title}</h1>
-        <ul className="flex gap-5 text-balck font-bold cursor-pointer">
-          {menu.map((item, index) => (
-            <li className=" hover:text-amber-400 hover:border-b-2 border-oranger-400 transition-all duration-300" key={index}>{item}</li>
+    <header className="flex justify-between h-[70px] items-center p-10 z-0 bg-gray-200 shadow-amber-50">
+     <div className="flex  ">
+       <nav className="flex items-center gap-6">
+        <h1 className="text-xs text-black font-bold">{title}</h1>
+        <ul className="flex gap-5 text-black font-bold cursor-pointer">
+          {menuLinks.map((item, index) => (
+            <li key={index}>
+              <NavLink 
+                to={item.path}
+                className=" text-xl flex hover:border-b-2"
+              >
+                {item.name}
+              </NavLink>
+            </li>
           ))}
         </ul>
-          <button className="bg-orange-400 ml[-100px] text-white font-bold w-[150px] h-[50px] rounded-xl">
-          {button}
-        </button>
       </nav>
+      <div  className="ml-10">
+         <NavLink to="/contact">
+           <button className="bg-orange-400 text-white font-bold w-[150px] h-[35px] hover:bg-orange-500 transition-colors duration-300">
+             Liên hệ đặt tiệc
+           </button>
+         </NavLink>
+      </div>
+     </div>
+     
          
       <div className="flex items-center gap-10">
         <div className="flex items-center border-b-2 border-gray-500">
           <input
             type="text"
-            className="p-2 outline-none"
+            className="p-1 outline-none"
             placeholder="Tìm kiếm món ăn"
           />
           <i className="fa-solid fa-magnifying-glass ml-2"></i>
