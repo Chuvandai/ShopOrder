@@ -13,6 +13,10 @@ import Contact from './components/Contents/Contact';
 import Whychoose from './components/Contents/Whychoose';
 import Form from './components/Form';
 import Shop from './products/Shop';
+import ProductDetailt from './products/ProductDetailt';
+import { CartProvider } from './carts/CartContext';
+import CartItem from './carts/CartItem';
+import Blog from './components/Contents/Blog';
 // ⬇️ Tạo component page tương ứng
 const Home = () => (
   <>
@@ -28,13 +32,19 @@ const ContactPage = () => <Form />;
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
+    <CartProvider>
+       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<ContactPage />} />
            <Route path="/shop" element={<Shop />} />
+            <Route path="/shop/:id" element={<ProductDetailt/>}/>
+            <Route path="/cart" element={<CartItem/>}/>
+            <Route path="/blog" element={<Blog/>}/>
         </Route>
       </Routes>
+    </CartProvider>
+      
     </BrowserRouter>
   );
 };

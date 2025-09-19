@@ -1,13 +1,17 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { CartContext } from "../carts/CartContext";
+
 const Header = ({title }) => {
   const menuLinks = [
     { name: "Trang chủ", path: "/" },
     { name: "Cửa hàng", path: "/shop" },
-    { name: "Thực đơn", path: "/menu" },
-    { name: "Tin tức", path: "/news" },
+    { name: "Menu", path: "/menu" },
+    { name: "Tin tức", path: "/blog" },
   ];
+  const { cartItem } = useContext(CartContext);
   return (
-    <header className="flex justify-between h-[70px] items-center p-10 z-0 bg-gray-200 shadow-amber-50">
+    <header className="flex justify-between h-[70px] items-center p-10 sticky top-0 z-10 bg-white shadow-xl">
      <div className="flex  ">
        <nav className="flex items-center gap-6">
         <h1 className="text-xs text-black font-bold">{title}</h1>
@@ -48,7 +52,11 @@ const Header = ({title }) => {
           <span>Tài khoản</span>
         </div>
         <div>
-          <i className="fa-solid fa-cart-shopping"></i>
+          <NavLink to={"/cart"}>
+          <i className="fa-solid fa-cart-shopping">
+            <span className="text-red-500" >{cartItem.length}</span>
+          </i>
+          </NavLink>
         </div>
       </div>
     </header>
