@@ -14,6 +14,9 @@ import ProductDetailt from './products/ProductDetailt';
 import { CartProvider } from './carts/CartContext';
 import CartItem from './carts/CartItem';
 import Blog from './components/Contents/Blog';
+import Checkout from './Payments/Checkout';
+import Success from './Payments/Success';
+import Order from './Payments/Order';
 
 const Home = () => (
   <>
@@ -38,6 +41,9 @@ const App = () => {
             <Route path="/shop/:id" element={<ProductDetailt/>}/>
             <Route path="/cart" element={<CartItem/>}/>
             <Route path="/blog" element={<Blog/>}/>
+            <Route path="/checkout" element={<Checkout/>}/>
+            <Route path="/success" element={<Success/>}/>
+            <Route path="/order" element={<Order/>}/>
         </Route>
       </Routes>
     </CartProvider>

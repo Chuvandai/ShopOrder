@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { CartContext } from "./CartContext";
 
 const CartItem = () => {
-  const { cartItem, getTotal } = useContext(CartContext);
+  const { cartItem, getTotal, handleCheckout, removeFromCart } = useContext(CartContext);
 
   return (
     <div className="container mx-auto p-6">
@@ -27,13 +27,16 @@ const CartItem = () => {
               <th className="px-4 py-3 border border-gray-300 text-sm">
                 Tổng tiền
               </th>
+              <th className="px-4 py-3 border border-gray-300 text-sm">
+                Thao tác
+              </th>
             </tr>
           </thead>
           <tbody>
             {cartItem.length === 0 ? (
               <tr>
                 <td
-                  colSpan="4"
+                  colSpan="5"
                   className="py-6 text-gray-500 font-medium italic"
                 >
                   Giỏ hàng của bạn đang trống!
@@ -64,13 +67,20 @@ const CartItem = () => {
                   <td className="px-4 py-3 border border-gray-200 text-amber-600 font-semibold">
                     {(item.caloriesPerServing * (item.quantity || 1)).toLocaleString()} VND
                   </td>
-
+                  <td className="px-4 py-3 border border-gray-200">
+                    <button 
+                      onClick={() => removeFromCart(item.id)}
+                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition"
+                    >
+                      🗑️ Xóa
+                    </button>
+                  </td>
                 </tr>
               ))
             )}
             {cartItem.length > 0 && (
               <tr className="bg-amber-100 font-bold">
-                <td colSpan="4" className="px-4 py-3 border border-gray-200 text-right">
+                <td colSpan="5" className="px-4 py-3 border border-gray-200 text-right">
                   Tổng cộng:
                 </td>
                 <td className="px-4 py-3 border border-gray-200 text-amber-600 font-semibold text-lg">
@@ -80,14 +90,13 @@ const CartItem = () => {
             )}
 
             <tr>
-              <td colSpan="5" className="px-4 py-3 text-right">
-              
-                <button
-                  type="submit"
-                  className="bg-amber-300 rounded text-white font-bold w-[150px] h-[50px] hover:bg-emerald-500 transition duration-200"
-                >
-                  Thanh toán
-                </button>
+              <td colSpan="6" className="px-4 py-3 text-right">
+                {cartItem.length > 0 && (
+                  <button onClick={handleCheckout}
+                    className="bg-amber-300 rounded text-white font-bold w-[150px] h-[50px] hover:bg-emerald-500 transition duration-200">
+                    Thanh toán
+                  </button>
+                )}
               </td>
             </tr>
 
