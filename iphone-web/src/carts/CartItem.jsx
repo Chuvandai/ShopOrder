@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { CartContext } from "./CartContext";
 
 const CartItem = () => {
-  const { cartItem } = useContext(CartContext);
+  const { cartItem, getTotal } = useContext(CartContext);
 
   return (
     <div className="container mx-auto p-6">
@@ -12,7 +12,7 @@ const CartItem = () => {
 
       <div className="overflow-x-auto">
         <table className="w-full border border-gray-200 rounded-lg shadow-lg text-center">
-          <thead className="bg-gradient-to-r from-amber-300 to-amber-300">
+          <thead className="bg-gradient-to-r from-amber-200 to-amber-200">
             <tr>
               <th className="px-4 py-3 border border-gray-300 text-sm">#</th>
               <th className="px-4 py-3 border border-gray-300 text-sm">
@@ -23,6 +23,9 @@ const CartItem = () => {
               </th>
               <th className="px-4 py-3 border border-gray-300 text-sm">
                 Giá sản phẩm
+              </th>
+              <th className="px-4 py-3 border border-gray-300 text-sm">
+                Tổng tiền
               </th>
             </tr>
           </thead>
@@ -58,9 +61,37 @@ const CartItem = () => {
                   <td className="px-4 py-3 border border-gray-200 text-amber-600 font-semibold">
                     {item.caloriesPerServing}$
                   </td>
+                  <td className="px-4 py-3 border border-gray-200 text-amber-600 font-semibold">
+                    {(item.caloriesPerServing * (item.quantity || 1)).toLocaleString()} VND
+                  </td>
+
                 </tr>
               ))
             )}
+            {cartItem.length > 0 && (
+              <tr className="bg-amber-100 font-bold">
+                <td colSpan="4" className="px-4 py-3 border border-gray-200 text-right">
+                  Tổng cộng:
+                </td>
+                <td className="px-4 py-3 border border-gray-200 text-amber-600 font-semibold text-lg">
+                  {getTotal().toLocaleString()} VND
+                </td>
+              </tr>
+            )}
+
+            <tr>
+              <td colSpan="5" className="px-4 py-3 text-right">
+              
+                <button
+                  type="submit"
+                  className="bg-amber-300 rounded text-white font-bold w-[150px] h-[50px] hover:bg-emerald-500 transition duration-200"
+                >
+                  Thanh toán
+                </button>
+              </td>
+            </tr>
+
+
           </tbody>
         </table>
       </div>
