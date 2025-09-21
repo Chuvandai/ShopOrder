@@ -53,7 +53,7 @@ const Blog = () => {
     {
       id: 5,
       title: "Chả cá Lã Vọng – Đặc sản Hà Nội",
-      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=500",
+      image: "https://beptueu.vn/hinhanh/tintuc/top-15-hinh-anh-mon-an-ngon-viet-nam-khien-ban-khong-the-roi-mat-3.jpg",
       author: "Văn Đại",
       date: "2025-09-05",
       shortDesc: "Chả cá thơm ngon với nghệ và thì là.",
